@@ -1,0 +1,7 @@
+---
+# tasks file for ajsalminen.drupal_basic
+- name: Sync git repo for the site
+  git:
+    repo: "{{drupal_basic_repo}}"
+    dest: "{{drupal_basic_site_dir}}"
+    version: HEAD
