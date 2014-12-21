@@ -119,7 +119,8 @@ galaxy_info:
 dependencies:
     - role: ajsalminen.mysql_sync
       mysql_sync_config:
-        -   source: "{{ drupal_basic_source.db.host|default(drupal_basic_source.host) }}"
+        # -   source: "{{ drupal_basic_source.db.host|default(drupal_basic_source.host) }}"
+        -   source: "{{ (drupal_basic_source.db.host|default(drupal_basic_source.host)) if drupal_basic_no_direct_db is not defined else drupal_basic_source.host }}"
             database: "{{ drupal_basic_source.db.name }}"
             skip_tables: [ 'cache', 'cache_filter', 'cache_menu', 'cache_page', 'history', 'sessions', 'watchdog', 'cache_block', 'cache_bootstrap', 'cache_field', 'cache_filter', 'cache_form', 'cache_views', 'cache_views_data', 'cache_path', 'cache_rules', 'cache_update', 'cache_variable', 'cache_image', 'ctools_css_cache', 'flood', 'captcha_sessions', 'batch', 'accesslog' ]
       tags: drupal_basic
