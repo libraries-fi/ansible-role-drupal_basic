@@ -1,7 +1,6 @@
 ---
 # tasks file for ajsalminen.drupal_basic
-- name: Sync git repo for the site
-  git:
-    repo: "{{drupal_basic_repo}}"
-    dest: "{{drupal_basic_site_dir}}"
-    version: HEAD
+- name: Create settings.php.
+  template:
+    src: drupal7-settings.php.j2
+    dest: "{{ drupal_basic_site_dir}}/www/sites/default/settings.php"
