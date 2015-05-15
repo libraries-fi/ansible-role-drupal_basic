@@ -224,7 +224,7 @@ $update_free_access = FALSE;
  *   $drupal_hash_salt = file_get_contents('/home/example/salt.txt');
  *
  */
-$drupal_hash_salt = '798tnFDtMiCt8UvP1QjNyUxokOVYNv1qBqeLRgK6P2c';
+$drupal_hash_salt = '{{ drupal_config.hash_salt }}';
 
 /**
  * Base URL (optional).
@@ -247,7 +247,6 @@ $drupal_hash_salt = '798tnFDtMiCt8UvP1QjNyUxokOVYNv1qBqeLRgK6P2c';
  * for you.
  */
 # $base_url = 'http://www.example.com';  // NO trailing slash!
-$base_url = 'http://hankkeet.kirjastot.fi';
 
 
 
@@ -338,21 +337,13 @@ ini_set('session.cookie_lifetime', 2000000);
  */
 # $conf['maintenance_theme'] = 'bartik';
 
-/**
- * Enable this setting to determine the correct IP address of the remote
- * client by examining information stored in the X-Forwarded-For headers.
- * X-Forwarded-For headers are a standard mechanism for identifying client
- * systems connecting through a reverse proxy server, such as Squid or
- * Pound. Reverse proxy servers are often used to enhance the performance
- * of heavily visited sites and may also provide other site caching,
- * security or encryption benefits. If this Drupal installation operates
- * behind a reverse proxy, this setting should be enabled so that correct
- * IP address information is captured in Drupal's session management,
- * logging, statistics and access management systems; if you are unsure
- * about this setting, do not have a reverse proxy, or Drupal operates in
- * a shared hosting environment, this setting should remain commented out.
- */
-# $conf['reverse_proxy'] = TRUE;
+{% if drupal_reverse_proxy_addresses is defined %}
+$conf['reverse_proxy'] = TRUE;
+$conf['reverse_proxy_addresses'] = array(
+{% for address in drupal_reverse_proxy_addresses %}'{{address}}',
+{% endfor %}
+);
+{% endif %}
 
 /**
  * Set this value if your proxy server sends the client IP in a header other

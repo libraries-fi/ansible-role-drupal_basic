@@ -1,2 +1,3 @@
 ---
 # vars file for ajsalminen.drupal_basic
+site_content_sync_sites: {}
