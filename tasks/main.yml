@@ -4,3 +4,4 @@
   template:
     src: drupal7-settings.php.j2
     dest: "{{ drupal_basic_site_dir}}/www/sites/default/settings.php"
+  when: drupal_basic_create_settings
