@@ -1,9 +1,12 @@
 ---
 # defaults file for ajsalminen.drupal_basic
 drupal_basic_source_site_dir: "{{drupal_basic_site_dir}}"
+drupal_basic_webroot_subdir: www
 drupal_basic_repo: "ssh://{{drupal_basic_source.host}}{{drupal_basic_source.dir}}"
 drupal_basic_skip_tables: [ 'cache', 'cache_filter', 'cache_menu', 'cache_page', 'history', 'sessions', 'watchdog', 'cache_block', 'cache_bootstrap', 'cache_field', 'cache_filter', 'cache_form', 'cache_views', 'cache_views_data', 'cache_path', 'cache_rules', 'cache_update', 'cache_variable', 'cache_image', 'ctools_css_cache', 'flood', 'captcha_sessions', 'batch', 'accesslog' ]
 drupal_basic_create_settings: true
+drupal_basic_settings_template: drupal7-settings.php.j2
+drupal_basic_files_subdir: sites/default/files
 
 # for permissions.yml
 dev_group: git

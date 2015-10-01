@@ -2,8 +2,8 @@
 # tasks file for ajsalminen.drupal_basic
 - name: Create settings.php.
   template:
-    src: drupal7-settings.php.j2
-    dest: "{{ drupal_basic_site_dir}}/www/sites/default/settings.php"
+    src: "{{ drupal_basic_settings_template }}"
+    dest: "{{ drupal_basic_site_dir}}/{{drupal_basic_webroot_subdir}}/sites/default/settings.php"
   when: drupal_basic_create_settings
   
 - include: permissions.yml tags=permissions
