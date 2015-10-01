@@ -1,0 +1,27 @@
+---
+# Copied from the drupal role and changed all occurrences of
+# "{{ drupal_sites_dir }}/{{ drupal_site_name }}" to "{{drupal_basic_site_dir}}"
+
+    - name: Create group for shared developer access
+      group: name={{ dev_group }}
+
+    - name: Set main directory permissions
+      file:
+        path: "{{drupal_basic_site_dir}}"
+        owner: root
+        group: "{{ dev_group }}"
+        mode: u+rwX,g+rwX,o+rX
+        state: directory
+        recurse: yes
+
+    - name: Set files directory permissions
+      file: path={{drupal_basic_site_dir}}/www/sites/default/files owner=root group=www-data state=directory recurse=yes
+
+    - name: Give write permission for group on all files in site files dir.
+      shell: chmod -R g+w {{drupal_basic_site_dir}}/www/sites/default/files
+
+    - name: Set sticky bit for all directories in site and execute for all
+      shell: find {{drupal_basic_site_dir}} -type d -exec chmod g+s {} \;
+
+    # - name: Allow settings.php for www-data writing with initial install in mind
+      # file: path='{{ drupal_sites_dir }}/{{ drupal_site_name }}/www/sites/default/settings.php' owner=www-data
