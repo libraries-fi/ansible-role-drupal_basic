@@ -144,7 +144,7 @@ dependencies:
         - source: "{{drupal_basic_source.host}}"
           dirs:
             - source: "{{drupal_basic_source.dir}}/sites/default/files/"
-              rsync_params: --exclude=files/php --exclude=files/kulsa_cache
+              rsync_params: --exclude=/php --exclude=/kulsa_cache --exclude=/styles
               target: "{{drupal_basic_site_dir}}/www/sites/default/files/"
       when: drupal_basic_source is defined and (site_content_sync_sites[site_name]|default(false) or site_content_sync|default(false))
       tags: drupal_basic
