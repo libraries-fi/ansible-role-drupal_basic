@@ -7,6 +7,6 @@ drupal_basic_skip_tables: [ 'cache', 'cache_filter', 'cache_menu', 'cache_page',
 drupal_basic_create_settings: true
 drupal_basic_settings_template: drupal7-settings.php.j2
 drupal_basic_files_subdir: sites/default/files
-
+drupal_basic_private_files_directory: "{{drupal_basic_site_dir}}/private"
 # for permissions.yml
-dev_group: git
+dev_group: drupaldev
