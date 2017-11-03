@@ -20,6 +20,11 @@
     - name: Set private files directory permissions
       file: path={{drupal_basic_private_files_directory}} owner=root group=www-data state=directory recurse=yes
 
+    - name: Add .htaccess to private files directory
+      copy:
+        src: htaccess
+        dest: {{drupal_basic_private_files_directory}}/.htaccess
+
     - name: Give write permission for group on all files in site files dir.
       shell: chmod -R g+w {{drupal_basic_site_dir}}/{{drupal_basic_webroot_subdir}}/sites/default/files
 
