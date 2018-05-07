@@ -15,13 +15,13 @@
         recurse: yes
 
     - name: Set files directory permissions
-      file: path={{drupal_basic_site_dir}}/www/sites/default/files owner=root group=www-data state=directory recurse=yes
+      file: path={{drupal_basic_site_dir}}/{{drupal_basic_webroot_subdir}}/sites/default/files owner=root group=www-data state=directory recurse=yes
 
     - name: Set private files directory permissions
       file: path={{drupal_basic_private_files_directory}} owner=root group=www-data state=directory recurse=yes
 
     - name: Give write permission for group on all files in site files dir.
-      shell: chmod -R g+w {{drupal_basic_site_dir}}/www/sites/default/files
+      shell: chmod -R g+w {{drupal_basic_site_dir}}/{{drupal_basic_webroot_subdir}}/sites/default/files
 
     - name: Set sticky bit for all directories in site and execute for all
       shell: find {{drupal_basic_site_dir}} -type d -exec chmod g+s {} \;
