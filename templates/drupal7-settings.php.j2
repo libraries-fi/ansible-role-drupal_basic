@@ -458,6 +458,11 @@ $conf['cache_class_cache_page'] = 'DrupalFakeCache';
  */
 # $conf['allow_authorize_operations'] = FALSE;
 
+# For https support.
+if (isset($_SERVER['HTTP_X_FORWARDED_PROTO']) &&
+    $_SERVER['HTTP_X_FORWARDED_PROTO'] == 'https') {
+  $_SERVER['HTTPS'] = 'on';
+}
 
 {% if drupal_enable_memcache is defined %}
 $conf['cache_backends'][] = 'sites/all/modules/memcache/memcache.inc';
