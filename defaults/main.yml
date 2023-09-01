@@ -10,3 +10,4 @@ drupal_basic_files_subdir: sites/default/files
 drupal_basic_private_files_directory: "{{drupal_basic_site_dir}}/private"
 # for permissions.yml
 dev_group: drupaldev
+drupal_basic_repo_version: master

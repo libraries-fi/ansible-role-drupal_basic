@@ -120,6 +120,7 @@ dependencies:
     - role: ajsalminen.git_checkout
       git_checkout_repo: "{{ drupal_basic_repo }}"
       git_checkout_target: "{{ drupal_basic_site_dir }}"
+      git_checkout_version: "{{ drupal_basic_repo_version }}"
 
     - role: apache_vhost
       apache_vhost_webroot: "{{drupal_basic_site_dir}}/{{drupal_basic_webroot_subdir}}"
