@@ -137,7 +137,7 @@ dependencies:
             database: "{{ drupal_basic_source.db.name }}"
             skip_tables: "{{ drupal_basic_skip_tables }}"
             target_database: "{{ drupal_config.db.name }}"
-      when: drupal_basic_source is defined and (site_content_sync_sites[site_name]|default(false) or site_content_sync|default(false))
+      when: drupal_basic_source is defined and (site_content_sync_sites[site_name]|default(false)|bool or site_content_sync|default(false)|bool) and drupal_basic_source != ""
       tags: drupal_basic
 
     - role: ajsalminen.file_sync
@@ -147,7 +147,7 @@ dependencies:
             - source: "{{drupal_basic_source.dir}}/{{drupal_basic_files_subdir}}/"
               rsync_params: --exclude=/php --exclude=/kulsa_cache --exclude=/styles
               target: "{{drupal_basic_site_dir}}/{{drupal_basic_webroot_subdir}}/{{drupal_basic_files_subdir}}/"
-      when: drupal_basic_source is defined and (site_content_sync_sites[site_name]|default(false) or site_content_sync|default(false))
+      when: drupal_basic_source is defined and (site_content_sync_sites[site_name]|default(false)|bool or site_content_sync|default(false)|bool) and drupal_basic_source != ""
       tags: drupal_basic
 
     - role: ajsalminen.file_sync
@@ -156,7 +156,7 @@ dependencies:
           dirs:
             - source: "{{drupal_basic_private_files_directory}}/"
               target: "{{drupal_basic_private_files_directory}}/"
-      when: drupal_basic_source is defined and (site_content_sync_sites[site_name]|default(false) or site_content_sync|default(false))
+      when: drupal_basic_source is defined and (site_content_sync_sites[site_name]|default(false)|bool or site_content_sync|default(false)|bool) and drupal_basic_source != ""
       tags: drupal_basic
 
 allow_duplicates: yes
